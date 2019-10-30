@@ -7,7 +7,6 @@ import Tovars from './components/Tovars.vue'
 // import studentInfo from './components/studentInfo.vue'
 // import login from './components/login.vue'
 // import store from './store.js'
-// import wysiwyg from 'vue-wysiwyg';
 
 require('velocity-animate');
 

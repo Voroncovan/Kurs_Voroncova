@@ -1,15 +1,3 @@
 <template>
-    <div class="main">
-        <div class="content">
-            <router-view></router-view>
-        </div>
-    </div>
+	<router-view></router-view>
 </template>
- <style>
-   .style1 {
-       background-color: white;
-   }
-   .style2 {
-       background-color: aliceblue;
-   }
-   </style>

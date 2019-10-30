@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^1.0.1",
+    "img-loader": "^3.0.1",
     "multer": "^1.4.1",
     "style-loader": "^0.23.1",
     "velocity-animate": "^1.5.2",
