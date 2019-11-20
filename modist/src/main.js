@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 
 import App from './components/App.vue'
 import Tovars from './components/Tovars.vue'
+import TovarInfo from './components/tovarInfo.vue'
 // import studentInfo from './components/studentInfo.vue'
 // import login from './components/login.vue'
 // import store from './store.js'
@@ -12,6 +13,7 @@ require('velocity-animate');
 
 const routes = [
     { path: '/', component: Tovars,  meta: { requiresAuth: true } },
+    { path: '/tovarInfo/:id', component: TovarInfo,  meta: { requiresAuth: true },  },
     // { path: '/student-info/:id', component: studentInfo, props: true,  meta: { requiresAuth: true } },
     // { path: '/login', component: login},
 ]
@@ -42,7 +44,7 @@ Vue.use(VueRouter)
 new Vue({
     render: h => h(App),
     el: '#app',
-    router,
+    router
     // store
 })
 

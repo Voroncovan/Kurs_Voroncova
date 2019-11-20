@@ -2,38 +2,56 @@
 
 
 <section class="ftco-section bg-light">
+    <div class="dropdown open">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Категория
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#" @click="filter('Краски художественные')">Краски художественные</a>
+    <a class="dropdown-item" href="#" @click="filter('Кисти') ">Кисти</a>
+    <a class="dropdown-item" href="#" @click="filter('Краски художественные') ">Something else here</a>
+  </div>
+</div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm col-md-6 col-lg-3">
+            <div class="col-sm col-md-6 col-lg-3" v-for="item in filtertovars" v-bind:key="item.id">
+                
                 <div class="product">
-                    <a href="#" class="img-prod"><img class="img-fluid" src="assets/images/product-1.jpg" alt="Colorlib Template">
-                        <span class="status">30%</span>
-                    </a>
-                    <div class="text py-3 px-3">
-                        <h3><a href="#">Young Woman Wearing Dress</a></h3>
+         <a href="#" class="img-prod"><router-link :to="'/tovarInfo/'+item.id"><img class="img-fluid" width="1000px" alt="Colorlib Template" :src="item.photo"></router-link>
+                   
+     </a>
+<pre></pre>
+<!-- <div class="col -md-4" v-for="item in filtertovars" v-bind:key="item.id">  -->
+                    <div class="text py-3 px-3" >
+                        <h3>{{item.Name}}</h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
-                            </div>
-                            <div class="rating">
+                                <p class="price">{{item.Price}} грн</p>
+                                <p class="categori"><span class="mr-2 price-dc">{{item.Category}}</span>
+                                </p>
+                          
+                        </div>
+
+                            <!-- <div class="rating">
                                 <p class="text-right">
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
                                     <span class="ion-ios-star-outline"></span>
-                                </p>
-                            </div>
+                                </p>-->
+                            <!-- </div>  -->
+                        <!-- </div>   -->
                         </div>
                         <hr>
-                        <p class="bottom-area d-flex">
+                        <!-- <p class="bottom-area d-flex">
                             <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
                             <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
-                        </p>
+                        </p> -->
                     </div>
                 </div>
             </div>
-            <div class="col-sm col-md-6 col-lg-3">
+            <!-- <div class="col-sm col-md-6 col-lg-3">
                 <div class="product">
                     <a href="#" class="img-prod"><img class="img-fluid" src="assets/images/product-2.jpg" alt="Colorlib Template">
                         <span class="status">New Arrival</span>
@@ -42,7 +60,7 @@
                         <h3><a href="#">Young Woman Wearing Dress</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price"><span>$120.00</span></p>
+                                <p class="price"><span>$127.00</span></p>
                             </div>
                             <div class="rating">
                                 <p class="text-right">
@@ -191,20 +209,20 @@
                                     <span class="ion-ios-star-outline"></span>
                                 </p>
                             </div>
-                        </div>
-                        <hr>
+                        </div> -->
+                        <!-- <hr>
                         <p class="bottom-area d-flex">
                             <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
                             <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
                         </p>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>-->
+        </div> 
         <div class="row mt-5">
     <div class="col text-center">
         <div class="block-27">
-        <ul>
+        <!-- <ul>
             <li><a href="#">&lt;</a></li>
             <li class="active"><span>1</span></li>
             <li><a href="#">2</a></li>
@@ -212,7 +230,7 @@
             <li><a href="#">4</a></li>
             <li><a href="#">5</a></li>
             <li><a href="#">&gt;</a></li>
-        </ul>
+        </ul> -->
         </div>
     </div>
     </div>
@@ -226,7 +244,7 @@
 <script>
     import Vue from 'vue'
 	import axios from 'axios'
-	import VueAxios from 'vue-axios'
+    import VueAxios from 'vue-axios'
 
     export default {
         data: function() {
@@ -234,13 +252,15 @@
 				id: 0,
 				name: '',
 				Category: '',
-				tovars: clothes
+                tovars: clothes,
+                filtertovars:[]
             };
         },
         mounted: async function(){
-            // let response = await Vue.axios.get("http://46.101.212.195:3000/students");
-            // console.log(response.data)
-            // this.students = response.data;
+           // let response = await Vue.axios.get("http://localhost:3000/tasks");
+           //  console.log(this.tovars)
+             this.tovars = clothes;
+             this.filtertovars = this.tovars
             // this.$store.commit('setCount', this.students.length);
         },
         computed: {
@@ -251,6 +271,14 @@
         },
       
         methods: {
+            filter: function(cat){
+                console.log(this.tovars)
+                this.filtertovars = this.tovars.filter((element) => { 
+                    return element.Category == cat;
+                   });
+                console.log(this.tovars)
+                
+            }
             // leave: function (el, done) {
             //     Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 1500 })
             //     Velocity(el, { rotateZ: '100deg' }, { loop: 12 })
