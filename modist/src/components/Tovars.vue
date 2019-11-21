@@ -9,7 +9,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="#" @click="filter('Краски художественные')">Краски художественные</a>
     <a class="dropdown-item" href="#" @click="filter('Кисти') ">Кисти</a>
-    <a class="dropdown-item" href="#" @click="filter('Краски художественные') ">Something else here</a>
+    <a class="dropdown-item" href="#" @click="filter('Холсты в рулоне') ">Холсты в рулоне</a>
+    <a class="dropdown-item" href="#" @click="filter('Холст на подрамнике') ">Холст на подрамнике</a>
+       <a class="dropdown-item" href="#" @click="filter('Подарочные наборы') ">Подарочные наборы</a>
   </div>
 </div>
     <div class="container-fluid">
