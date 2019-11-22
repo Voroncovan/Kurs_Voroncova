@@ -2,18 +2,7 @@
 
 
 <section class="ftco-section bg-light">
-    <div class="dropdown open">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Категория
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#" @click="filter('Краски художественные')">Краски художественные</a>
-    <a class="dropdown-item" href="#" @click="filter('Кисти') ">Кисти</a>
-    <a class="dropdown-item" href="#" @click="filter('Холсты в рулоне') ">Холсты в рулоне</a>
-    <a class="dropdown-item" href="#" @click="filter('Холст на подрамнике') ">Холст на подрамнике</a>
-       <a class="dropdown-item" href="#" @click="filter('Подарочные наборы') ">Подарочные наборы</a>
-  </div>
-</div>
+   
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm col-md-6 col-lg-3" v-for="item in filtertovars" v-bind:key="item.id">
@@ -249,24 +238,33 @@
     import VueAxios from 'vue-axios'
 
     export default {
+        props: {
+            cat: ''
+        },
         data: function() {
             return {
 				id: 0,
 				name: '',
 				Category: '',
                 tovars: clothes,
-                filtertovars:[]
+                // filtertovars:[]
             };
         },
         mounted: async function(){
            // let response = await Vue.axios.get("http://localhost:3000/tasks");
            //  console.log(this.tovars)
              this.tovars = clothes;
-             this.filtertovars = this.tovars
+            //  this.filtertovars = this.tovars
             // this.$store.commit('setCount', this.students.length);
         },
         computed: {
-
+            filtertovars () {
+                switch(this.cat) {
+                    case 'paints' : return this.filter('Краски художественные'); break;
+                    case 'brushes' : return this.filter('Кисти'); break;
+                    default: return this.tovars;
+                }
+            }
             // getCurrentUser () {
             //     return this.$store.getters.getUser
             // } 
@@ -275,10 +273,10 @@
         methods: {
             filter: function(cat){
                 console.log(this.tovars)
-                this.filtertovars = this.tovars.filter((element) => { 
+                return this.tovars.filter((element) => { 
                     return element.Category == cat;
                    });
-                console.log(this.tovars)
+                // console.log(this.tovars)
                 
             }
             // leave: function (el, done) {

@@ -12,7 +12,7 @@ import TovarInfo from './components/tovarInfo.vue'
 require('velocity-animate');
 
 const routes = [
-    { path: '/', component: Tovars,  meta: { requiresAuth: true } },
+    { path: '/:cat?', component: Tovars,  meta: { requiresAuth: true }, props: true },
     { path: '/tovarInfo/:id', component: TovarInfo,  meta: { requiresAuth: true },  },
     // { path: '/student-info/:id', component: studentInfo, props: true,  meta: { requiresAuth: true } },
     // { path: '/login', component: login},
